@@ -1,5 +1,7 @@
 from src.components.Button import Button
 from src.utils.Constants import OnClickType
+from src.components.Word import Word
+from src.components.WordManager import WordManager
 
 class GamePlaying:
     def __init__(self, screen):
@@ -19,16 +21,20 @@ class GamePlaying:
             },
             (50, 50)
         )
+
+        self.word_manager = WordManager(self.screen)
     
     def set_level(self, level):
         self.level = level
-        print("Level set to: {}".format(self.level))
+        self.word_manager.set_level(self.level)
 
     def update(self, mouse_pos):
         self.back_button.update(mouse_pos)
+        self.word_manager.update(mouse_pos)
 
     def render(self):
         self.back_button.render()
+        self.word_manager.render()
 
     def click(self):
         click_behaviour = self.back_button.click()

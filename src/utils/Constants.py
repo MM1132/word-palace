@@ -1,5 +1,5 @@
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 800
 
 class OnClickType():
     SWITCH_VIEW = "switch_view"

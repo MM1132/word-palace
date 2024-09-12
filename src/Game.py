@@ -48,7 +48,6 @@ class Game:
         self.view_switcher.update(self.mouse_pos)
 
     def render(self):
-        pygame.draw.circle(self.screen, "red", self.mouse_pos, 50)
         self.view_switcher.render()
 
     def start(self):

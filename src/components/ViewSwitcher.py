@@ -17,9 +17,7 @@ class ViewSwitcher:
     def click(self):
         click_behaviour_list = self.view.click()
         for i in reversed(range(len(click_behaviour_list))):
-            print(click_behaviour_list[i])
             if "executed" in click_behaviour_list[i] and click_behaviour_list[i]["executed"] == True:
-                print("Continuing!")
                 continue
             if (click_behaviour_list[i]["type"] == OnClickType.SWITCH_VIEW) \
             and (click_behaviour_list[i]["data"] in self.views):

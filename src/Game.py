@@ -13,7 +13,7 @@ class Game:
         self.game_running = True
         self.clock = pygame.time.Clock()
 
-        self.game_playing = GamePlaying()
+        self.game_playing = GamePlaying(self.screen)
 
         self.view_switcher = ViewSwitcher(
             self.screen,

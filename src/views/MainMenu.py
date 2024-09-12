@@ -48,11 +48,6 @@ class MainMenu(ViewSwitcher):
                             {
                                 "onClick": [
                                     {
-                                        "type": OnClickType.FUNCTION,
-                                        "data": select_level,
-                                        "props": ["wordlists/foods_general.wl"]
-                                    },
-                                    {
                                         "type": OnClickType.SWITCH_VIEW,
                                         "data": "game",
                                     }

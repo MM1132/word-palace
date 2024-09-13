@@ -40,6 +40,10 @@ class WordManager:
         
         self.save_filename = level.replace(".wl", ".palace").replace("wordlists/", "palaces/")
     
+    def set_palace(self, palace_filename):
+        with open(palace_filename, "r") as f:
+            self.words = [Word.from_palace_data(self.screen, *(line.strip().split(","))) for line in f]
+
     def save_palace(self):
         with open(self.save_filename, "w") as f:
             for word in self.words:

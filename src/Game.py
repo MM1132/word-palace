@@ -23,7 +23,8 @@ class Game:
                     self.screen,
                     "main-menu",
                     self.set_running,
-                    self.game_playing.set_level
+                    self.game_playing.set_level,
+                    self.game_playing.set_palace
                 ),
                 "game": ViewSwitcher(
                     self.screen,

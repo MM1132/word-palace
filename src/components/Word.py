@@ -8,8 +8,10 @@ class Word:
         self.lang_1 = lang_1.strip()
         self.lang_2 = lang_2.strip()
 
-        self.color = self.color = (random.randint(45, 230), random.randint(45, 230), random.randint(45, 230))
+        self.color = (random.randint(45, 220), random.randint(45, 220), random.randint(45, 220))
         self.hover = False
+        self.active = False
+        self.guessed = False
 
         ### 
         self.pos = [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)]
@@ -28,9 +30,28 @@ class Word:
             self.box_size, 
             self.box_size
         )
+    
+    @classmethod
+    def from_palace_data(cls, screen, lang_1, lang_2, pos_1, pos_2, red, green, blue, box_size):
+        word = cls(screen, lang_1, lang_2)
+        word.pos = [int(pos_1), int(pos_2)]
+        word.color = (int(red), int(green), int(blue))
+        word.box_size = int(box_size)
 
-        self.active = False
-        self.guessed = False
+        FONT = pygame.font.SysFont(pygame.font.get_fonts()[0], word.box_size)
+        word.text_surface = FONT.render(word.lang_2, True, (255, 255, 255), word.color)
+        word.text_rect = word.text_surface.get_rect()
+        word.text_rect.x = word.pos[0] - word.text_rect.center[0]
+        word.text_rect.y = word.pos[1] - word.text_rect.center[1]
+
+        word.rect = pygame.Rect(
+            word.pos[0] - word.box_size / 2, 
+            word.pos[1] - word.box_size / 2, 
+            word.box_size, 
+            word.box_size
+        )
+
+        return word
     
     def activate(self):
         self.active = True

@@ -8,7 +8,6 @@ import pygame
 class GamePlaying:
     def __init__(self, screen):
         self.screen = screen
-        self.level = None
         self.word_manager = WordManager(self.screen)
 
         self.back_button = Button(
@@ -40,10 +39,10 @@ class GamePlaying:
         )
         
         self.current_word = ""
-        self.current_word_text = Text(self.screen, self.current_word, (SCREEN_WIDTH / 2, 20), 36)
+        self.current_word_text = Text(self.screen, self.current_word, (SCREEN_WIDTH / 2 + 200, 26), 36)
 
         self.score = 0
-        self.score_text = Text(self.screen, "Score: {}".format(self.score), (SCREEN_WIDTH - 100, 20), 36)
+        self.score_text = Text(self.screen, "Score: {}".format(self.score), (SCREEN_WIDTH - 100, 26), 36)
     
     def increase_score(self):
         self.score += 1
@@ -54,9 +53,11 @@ class GamePlaying:
         self.current_word_text.set_text(self.current_word)
 
     def set_level(self, level):
-        self.level = level
-        self.word_manager.set_level(self.level)
-
+        self.word_manager.set_level(level)
+        self.get_new_random_word()
+    
+    def set_palace(self, palace_filename):
+        self.word_manager.set_palace(palace_filename)
         self.get_new_random_word()
 
     def update(self, mouse_pos):

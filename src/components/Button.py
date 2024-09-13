@@ -2,7 +2,6 @@ import pygame
 
 class Button:
     FONT = pygame.font.SysFont(pygame.font.get_fonts()[0], 48)
-    hover_counter = 0
 
     def __init__(self, screen, text, click_behaviour, pos):
         self.screen = screen

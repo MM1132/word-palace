@@ -57,7 +57,7 @@ class Game:
 
             self.update()
 
-            self.screen.fill("purple")
+            self.screen.fill((10, 15, 10))
             self.render()
 
             pygame.display.flip()

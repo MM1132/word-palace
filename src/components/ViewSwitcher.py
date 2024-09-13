@@ -24,7 +24,11 @@ class ViewSwitcher:
                 self.view = self.views[click_behaviour_list[i]["data"]]
                 click_behaviour_list[i]["executed"] = True
             elif (click_behaviour_list[i]["type"] == OnClickType.FUNCTION):
-                click_behaviour_list[i]["data"](*(click_behaviour_list[i]["props"]))
+                click_behaviour_list[i]["data"](
+                    *(click_behaviour_list[i]["props"]) 
+                    if "props" in click_behaviour_list[i]
+                    else ()
+                )
                 click_behaviour_list[i]["executed"] = True
         if len([v["executed"] for v in click_behaviour_list if "executed" in v and v["executed"] == True]) == len(click_behaviour_list):
             for v in click_behaviour_list:

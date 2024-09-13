@@ -9,6 +9,7 @@ class GamePlaying:
     def __init__(self, screen):
         self.screen = screen
         self.level = None
+        self.word_manager = WordManager(self.screen)
 
         self.back_button = Button(
             self.screen,
@@ -24,7 +25,20 @@ class GamePlaying:
             (50, 25)
         )
 
-        self.word_manager = WordManager(self.screen)
+        self.save_palace_button = Button(
+            self.screen,
+            "Save palace",
+            {
+                "onClick": [
+                    {
+                        "type": OnClickType.FUNCTION,
+                        "data": self.word_manager.save_palace
+                    }
+                ]
+            },
+            (400, 25)
+        )
+        
         self.current_word = ""
         self.current_word_text = Text(self.screen, self.current_word, (SCREEN_WIDTH / 2, 20), 36)
 
@@ -50,12 +64,14 @@ class GamePlaying:
         self.word_manager.update(mouse_pos)
         self.current_word_text.update(mouse_pos)
         self.score_text.update(mouse_pos)
+        self.save_palace_button.update(mouse_pos)
 
     def render(self):
         self.back_button.render()
         self.word_manager.render()
         self.current_word_text.render()
         self.score_text.render()
+        self.save_palace_button.render()
 
         pygame.draw.line(self.screen, (255, 255, 255), (0, 55), (SCREEN_WIDTH, 55))
 
@@ -63,10 +79,15 @@ class GamePlaying:
         click_behaviour = self.back_button.click()
         if type(click_behaviour) is list and len(click_behaviour) != 0:
             return click_behaviour
+
+        click_behaviour = self.save_palace_button.click()
+        if type(click_behaviour) is list and len(click_behaviour) != 0:
+            return click_behaviour
         
         clicked_word = self.word_manager.click()
         if clicked_word is not None:
-            if clicked_word == self.current_word:
+            if clicked_word.lang_1 == self.current_word:
+                clicked_word.set_guessed(True)
                 self.increase_score()
                 self.get_new_random_word()
 

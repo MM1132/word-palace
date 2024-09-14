@@ -10,7 +10,7 @@ class Word:
 
         self.color = (random.randint(45, 220), random.randint(45, 220), random.randint(45, 220))
         self.hover = False
-        self.active = True
+        self.active = False
         self.guessed = False
 
         ### 

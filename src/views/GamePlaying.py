@@ -42,7 +42,7 @@ class GamePlaying:
         self.current_word_text = Text(self.screen, self.current_word, (SCREEN_WIDTH / 2 + 200, 26), 36)
 
         self.score = 0
-        self.score_text = Text(self.screen, "Score: {}".format(self.score), (SCREEN_WIDTH - 100, 26), 36)
+        self.score_text = Text(self.screen, "Score: {}".format(self.score), (SCREEN_WIDTH - 130, 26), 36)
     
     def increase_score(self):
         self.score += 1
